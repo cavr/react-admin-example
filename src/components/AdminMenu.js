@@ -10,13 +10,15 @@ const AdminMenu = props => {
 
   const menu = showMenu ? (
     <div>
-      {resourcer.map((resource, index) => (
-        <MenuItemLink
-          key={index}
-          to={`/${resource.name}`}
-          primaryText={resource.name}
-        />
-      ))}
+      {resourcer
+        .filter(resource => resource.name !== "comments")
+        .map((resource, index) => (
+          <MenuItemLink
+            key={index}
+            to={`/${resource.name}`}
+            primaryText={resource.name}
+          />
+        ))}
       <MenuItemLink to="/example" primaryText="Example" />
     </div>
   ) : (
@@ -31,7 +33,7 @@ const AdminMenu = props => {
   );
 };
 
-const mapStateToProps = state => {  
+const mapStateToProps = state => {
   return {
     resourcer: getResources(state),
     showMenu: state.admin.ui ? state.admin.ui.sidebarOpen : true

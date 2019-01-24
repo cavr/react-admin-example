@@ -20,8 +20,26 @@ const theme = createMuiTheme({
 const history = createHistory();
 
 const dataProvider = fakeDataProvider({
-  posts: [{ id: 1, name: "Carlos" }]
+  posts: [{ id: 1, name: "Carlos" }],
+  comments: [
+    {
+      post_id: 1,
+      author: "Charlie"
+    },
+    {
+      post_id: 1,
+      author: "Charles"
+    }
+  ]
 });
+
+const messages = {
+  en: {
+    hello: "CAVR"
+  }
+};
+
+const i18nProvider = locale => messages[locale];
 
 class App extends Component {
   render() {
@@ -34,6 +52,8 @@ class App extends Component {
         customRoutes={customRoutes}
         history={history}
         appLayout={AdminMenu}
+        i18nProvider={i18nProvider}
+        locale="en"
       >
         <Resource
           name="posts"
@@ -41,6 +61,7 @@ class App extends Component {
           edit={PostEdit}
           create={PostCreate}
         />
+        <Resource name="comments" />
       </Admin>
     );
   }

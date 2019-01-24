@@ -3,10 +3,12 @@ import {
   List,
   Datagrid,
   TextField,
-  EmailField,
   EditButton,
   CreateButton,
-  CardActions
+  CardActions,
+  ReferenceManyField,
+  SingleFieldList,
+  ChipField
 } from "react-admin";
 
 const PostActions = ({ basePath }) => (
@@ -20,6 +22,15 @@ export const PostList = props => (
     <Datagrid rowClick="edit">
       <TextField source="id" />
       <TextField source="name" />
+      <ReferenceManyField
+        label="Reference"
+        reference="comments"
+        target="post_id"
+      >
+        <SingleFieldList>
+          <ChipField source="author" />
+        </SingleFieldList>
+      </ReferenceManyField>
       <EditButton />
     </Datagrid>
   </List>

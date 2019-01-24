@@ -1,13 +1,15 @@
-import React from 'react';
-import { Edit, SimpleForm, TextInput } from 'react-admin'
+import React from "react";
+import { Edit, SimpleForm, TextInput, translate } from "react-admin";
 
-
-export const PostEdit = (props) => (
-    <Edit { ...props }>
-        <SimpleForm>
-            <TextInput source="name" />
-        </SimpleForm>
+const PostEdit = ({ translate, ...props }) => (
+  <div>
+    <strong>{translate("hello")}</strong>
+    <Edit {...props}>
+      <SimpleForm>
+        <TextInput source="name" label={translate("hello")} />
+      </SimpleForm>
     </Edit>
-)
+  </div>
+);
 
-export default PostEdit;
+export default translate(PostEdit);
